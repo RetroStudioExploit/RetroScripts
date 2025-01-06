@@ -17,7 +17,7 @@ for _, remote in pairs(getInstance("Ban", "RemoteEvent")) do
         remote:FireServer(unpack({
             [1] = {
                 [1] = player.Name,
-                [2] = "RETROSAFENIL",
+                [2] = "_RETROSAFENIL_",
                 [3] = reasons[math.random(0, #reasons)]
             }
         }))
