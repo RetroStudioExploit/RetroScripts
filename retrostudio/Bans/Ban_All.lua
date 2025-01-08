@@ -1,5 +1,6 @@
 local banName = "BanPlr"
 local aMethod = 1
+local isFunction = false
 
 function getInstance(name:string, instanceName:string)
     for _, even in game:GetDescendants() do
@@ -10,8 +11,9 @@ function getInstance(name:string, instanceName:string)
     return nil
 end
 
-local banPlr = getInstance(banName, "RemoteEvent")
+local banPlr = getInstance(banName, isFunction and "RemoteFunction" or "RemoteEvent")
 local PS = game:GetService("Players")
+local reasons = {"Scamming", "Farting Owner", "Exploitng", "Bypassing Chat", "Harassment", "Bullying someone", "Inappropriate Avator / Name", "Touching minors", "OWO!!!! HACKED BY FRISKSHIFT!!", "FRISKSHIFT IS BACK"}
 
 local function ban(p, reason)
     local bantable = {}
@@ -48,10 +50,14 @@ local function ban(p, reason)
             [5] = '',
         }
     end
-    banPlr:FireServer(unpack(bantable))
+    if isFunction then
+        banPlr:InvokeServer(unpack(bantable))
+    else
+        banPlr:FireServer(unpack(bantable))
+    end
 end
 
 for _, p in PS:GetPlayers() do
     if p == PS.LocalPlayer then continue end
-    ban(p, "Exploiting")
+    ban(p, reasons[math.random(0, #reasons)])
 end
