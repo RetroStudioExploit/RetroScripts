@@ -25,11 +25,13 @@ function getRootSafe(noroot:boolean)
     end
 end
 function inlinedRemote(e, args:table)
+    local output
     if remoteFunc then
-        e:InvokeServer(unpack(args))
+        output = e:InvokeServer(unpack(args))
     else
-        e:FireServer(unpack(args))
+        output = e:FireServer(unpack(args))
     end
+    return output
 end
 
 local callbacks = {}
@@ -40,9 +42,13 @@ for _, v in game:GetDescendants() do
 end
 
 for _, remote in pairs(callbacks) do
+    local out
     if mode == "fireevent" then
-        inlinedRemote(remote, {[1] = getRootSafe(false).Position})
+        out = inlinedRemote(remote, {[1] = getRootSafe(false).Position})
     else
-        inlinedRemote(remote, {[1] = getRootSafe(true)})
+        out = inlinedRemote(remote, {[1] = getRootSafe(true)})
+    end
+    if out ~= nil then
+        print("Output: " .. out)
     end
 end
