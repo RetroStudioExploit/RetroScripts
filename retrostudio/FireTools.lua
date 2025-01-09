@@ -21,21 +21,18 @@ end
 function getRootSafe(noroot:boolean)
     noroot = noroot or false
 
+    local root = nil
     local selected_plr = plrs[math.random(0, #plrs)]
     if selected_plr ~= nil then
         print("Selected Player: " .. selected_plr.Name)
         if not noroot then
             local plr_char = selected_plr.Character or selected_plr.CharacterAdded:Wait()
-            if not plr_char then
-                return nil
-            else
-                print("The player [" .. selected_plr.Name .. "] has root: " .. tostring(plr_char))
-            end
-            return getRoot(plr_char)
+            root = getRoot(plr_char)
         else
-            return selected_plr
+            root = selected_plr
         end
     end
+    return root
 end
 function inlinedRemote(e, args:table)
     local output
