@@ -10,6 +10,7 @@ local SETTINGS = {
 
 local function DoTransmission(channel:number, text:string)
     Transmission:FireServer(unpack({
+        [0] = nil,
         [1] = {
             [1] = channel,
             [2] = text
@@ -18,12 +19,6 @@ local function DoTransmission(channel:number, text:string)
 end
 
 for i, _ in PS:GetPlayers() do
-    if SETTINGS["Randomized"] then
-        if SETTINGS["RandomChance"] == math.random(0, 100) then
-            DoTransmission(i, SETTINGS["TransmissionText"])
-        end
-    else
-        DoTransmission(i, SETTINGS["TransmissionText"])
-    end
+    DoTransmission(i, SETTINGS["TransmissionText"])
 end
 
