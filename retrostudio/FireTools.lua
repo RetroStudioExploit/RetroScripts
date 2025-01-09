@@ -16,10 +16,9 @@ function getRootSafe(noroot:boolean)
 
     local selected_plr:Player = plrs[math.random(0, #plrs)]
     if not noroot then
-        if selected_plr.Character == nil then
-            return nil
-        end
-        return getRoot(selected_plr.Character)
+        local plr_Char:Model = selected_plr:FindFirstChild("Character")
+        if not plr_Char then return nil end
+        return getRoot(plr_Char)
     else
         return selected_plr
     end
