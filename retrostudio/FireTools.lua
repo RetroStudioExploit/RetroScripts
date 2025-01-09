@@ -9,14 +9,15 @@ local Catalog = RS:FindFirstChild("CatalogItems")
 local CatalogGears = Catalog:FindFirstChild("Gears")
 
 function getRoot(char:Model):Part
-	return char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+    return char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
 end
 function getRootSafe(noroot:boolean)
     noroot = noroot or false
 
-    local selected_plr:Player = plrs[math.random(0, #plrs)]
+    local selected_plr = plrs[math.random(0, #plrs)]
     if not noroot then
-        local plr_Char:Model = selected_plr:FindFirstChild("Character")
+        local plr_Char = selected_plr:FindFirstChild("Character")
+        print("selected_plr: " .. selected_plr .. " | plr_Char: " .. plr_Char)
         if not plr_Char then return nil end
         return getRoot(plr_Char)
     else
