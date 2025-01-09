@@ -23,9 +23,14 @@ function getRootSafe(noroot:boolean)
 
     local selected_plr = plrs[math.random(0, #plrs)]
     if selected_plr ~= nil then
+        print("Selected Player: " .. selected_plr.Name)
         if not noroot then
             local plr_char = selected_plr.Character or selected_plr.CharacterAdded:Wait()
-            if not plr_char then return nil end
+            if not plr_char then
+                return nil
+            else
+                print("The player [" .. selected_plr.Name .. "] has root: " .. tostring(plr_char))
+            end
             return getRoot(plr_char)
         else
             return selected_plr
@@ -47,6 +52,15 @@ for _, v in CatalogGears:GetDescendants() do
     if v:IsA(remoteFunc and "RemoteFunction" or "RemoteEvent") then
         table.insert(callbacks, v)
     end
+end
+
+print("Testing")
+local status, error_msg = pcall(function()
+    local test_plr = getRootSafe(false)
+    print("Selected Player Root: " .. test_plr)
+end)
+if not status then
+    print("error: " .. error_msg)
 end
 
 for _, remote in pairs(callbacks) do
