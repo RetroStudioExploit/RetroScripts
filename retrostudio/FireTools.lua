@@ -2,11 +2,7 @@ local mode = 1
 local remoteFunc = false
 
 local PS = game:GetService("Players")
-local RS = game:GetService("ReplicatedStorage")
-
 local plrs = PS:GetPlayers()
-local Catalog = RS:FindFirstChild("CatalogItems")
-local CatalogGears = Catalog:FindFirstChild("Gears")
 
 function getRoot(char:Model):Part
     return char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
@@ -37,9 +33,13 @@ function inlinedRemote(e, args:table)
 end
 
 local callbacks = {}
-for _, v in CatalogGears:GetDescendants() do
-    if v:IsA(remoteFunc and "RemoteFunction" or "RemoteEvent") then
-        table.insert(callbacks, v)
+for _, v in game:GetDescendants() do
+    if v:IsA("Tool") then
+        for _, tool_child in v:GetDescendants() do
+            if tool_child:IsA(remoteFunc and "RemoteFunction" or "RemoteEvent") then
+                table.insert(tool_child, v)
+            end
+        end
     end
 end
 
