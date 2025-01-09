@@ -4,7 +4,14 @@ local remoteFunc = false
 local PS = game:GetService("Players")
 local RS = game:GetService("ReplicatedStorage")
 
-local plrs = PS:GetPlayers()
+function fix_plrs()
+    local p = {}
+    for _, v in PS:GetPlayers() do
+        if v ~= nil then table.insert(p, v) end
+    end
+    return p
+end
+local plrs = fix_plrs()
 local Catalog = RS:FindFirstChild("CatalogItems")
 local CatalogGears = Catalog:FindFirstChild("Gears")
 
