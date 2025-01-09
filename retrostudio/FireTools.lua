@@ -24,7 +24,6 @@ function getRootSafe(noroot:boolean)
     local root = nil
     local selected_plr = plrs[math.random(0, #plrs)]
     if selected_plr ~= nil then
-        print("Selected Player: " .. selected_plr.Name)
         if not noroot then
             local plr_char = selected_plr.Character or selected_plr.CharacterAdded:Wait()
             root = getRoot(plr_char)
@@ -51,21 +50,9 @@ for _, v in CatalogGears:GetDescendants() do
     end
 end
 
-print("Testing")
-local status, error_msg = pcall(function()
-    local test_plr = getRootSafe(false)
-    print("Selected Player Root: " .. test_plr)
-end)
-if not status then
-    print("error: " .. error_msg)
-end
-
 for _, remote in pairs(callbacks) do
     local root = getRootSafe(false)
-    if root == nil then
-        print("Nil Found")
-        continue
-    end
+    if root == nil then continue end
 
     local out
     if mode == 1 then
