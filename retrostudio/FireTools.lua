@@ -61,13 +61,19 @@ if not status then
 end
 
 for _, remote in pairs(callbacks) do
+    local root = getRootSafe(false)
+    if root == nil then
+        print("Nil Found")
+        continue
+    end
+
     local out
     if mode == 1 then
-        out = inlinedRemote(remote, {[1] = getRootSafe(false).Position})
+        out = inlinedRemote(remote, {[1] = root.Position})
     elseif mode == 2 then
         out = inlinedRemote(remote, {[1] = getRootSafe(true)})
     elseif mode == 3 then
-        out = inlinedRemote(remote, {[1] = {[1] = getRootSafe(false).Position}})
+        out = inlinedRemote(remote, {[1] = {[1] = root.Position}})
     else
         out = inlinedRemote(remote, {[1] = {[1] = getRootSafe(true)}})
     end
