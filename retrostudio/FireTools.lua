@@ -16,10 +16,9 @@ function getRootSafe(noroot:boolean)
 
     local selected_plr = plrs[math.random(0, #plrs)]
     if not noroot then
-        local plr_Char = selected_plr:FindFirstChild("Character")
-        print("selected_plr: " .. selected_plr .. " | plr_Char: " .. plr_Char)
-        if not plr_Char then return nil end
-        return getRoot(plr_Char)
+        local plr_char = selected_plr.Character or selected_plr.CharacterAdded:Wait()
+        if not plr_char then return nil end
+        return getRoot(plr_char)
     else
         return selected_plr
     end
