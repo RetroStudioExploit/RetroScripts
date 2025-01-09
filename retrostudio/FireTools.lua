@@ -4,14 +4,7 @@ local remoteFunc = false
 local PS = game:GetService("Players")
 local RS = game:GetService("ReplicatedStorage")
 
-function fix_plrs()
-    local p = {}
-    for _, v in PS:GetPlayers() do
-        if v ~= nil then table.insert(p, v) end
-    end
-    return p
-end
-local plrs = fix_plrs()
+local plrs = PS:GetPlayers()
 local Catalog = RS:FindFirstChild("CatalogItems")
 local CatalogGears = Catalog:FindFirstChild("Gears")
 
@@ -52,17 +45,18 @@ end
 
 for _, remote in pairs(callbacks) do
     local root = getRootSafe(false)
+    local root2 = getRootSafe(true)
     if root == nil then continue end
 
     local out
     if mode == 1 then
         out = inlinedRemote(remote, {[1] = root.Position})
     elseif mode == 2 then
-        out = inlinedRemote(remote, {[1] = getRootSafe(true)})
+        out = inlinedRemote(remote, {[1] = root2})
     elseif mode == 3 then
         out = inlinedRemote(remote, {[1] = {[1] = root.Position}})
     else
-        out = inlinedRemote(remote, {[1] = {[1] = getRootSafe(true)}})
+        out = inlinedRemote(remote, {[1] = {[1] = root2}})
     end
     if out ~= nil then print("Output: " .. out) end
 end
