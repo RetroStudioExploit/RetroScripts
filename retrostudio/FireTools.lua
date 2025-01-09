@@ -22,12 +22,14 @@ function getRootSafe(noroot:boolean)
     noroot = noroot or false
 
     local selected_plr = plrs[math.random(0, #plrs)]
-    if not noroot then
-        local plr_char = selected_plr.Character or selected_plr.CharacterAdded:Wait()
-        if not plr_char then return nil end
-        return getRoot(plr_char)
-    else
-        return selected_plr
+    if selected_plr ~= nil then
+        if not noroot then
+            local plr_char = selected_plr.Character or selected_plr.CharacterAdded:Wait()
+            if not plr_char then return nil end
+            return getRoot(plr_char)
+        else
+            return selected_plr
+        end
     end
 end
 function inlinedRemote(e, args:table)
