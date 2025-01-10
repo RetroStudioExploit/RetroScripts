@@ -1,4 +1,11 @@
-local mode = 1
+--[[
+    Modes:
+    Vector3
+    Player
+    CFrame
+]]--
+local mode = "vector3"
+local array = 1
 local remoteFunc = false
 
 local PS = game:GetService("Players")
@@ -43,20 +50,33 @@ for _, v in game:GetDescendants() do
     end
 end
 
-for _, remote in pairs(callbacks) do
+function parseArgs()
     local root = getRootSafe(false)
     local root2 = getRootSafe(true)
-    if root == nil then continue end
+    if root == nil then return end
 
-    local out
-    if mode == 1 then
-        out = inlinedRemote(remote, {[1] = root.Position})
-    elseif mode == 2 then
-        out = inlinedRemote(remote, {[1] = root2})
-    elseif mode == 3 then
-        out = inlinedRemote(remote, {[1] = {[1] = root.Position}})
+    local tbl
+    if array == 1 then
+        if mode == "vector" then
+            tbl = {[1] = root}
+        elseif  mode == "player" then
+            tbl = {[1] = root2}
+        else
+            tbl = {[1] = CFrame.new(root), [2] = true}
+        end
     else
-        out = inlinedRemote(remote, {[1] = {[1] = root2}})
+        if mode == "vector" then
+            tbl = {[1] = {[1] = root}}
+        elseif  mode == "player" then
+            tbl = {[1] = {[1] = root2}}
+        else
+            tbl = {[1] = {[1] = CFrame.new(root), [2] = true}}
+        end
     end
+    return tbl
+end
+
+for _, remote in pairs(callbacks) do
+    local out = inlinedRemote(remote, parseArgs())
     if out ~= nil then print("Output: " .. out) end
 end
