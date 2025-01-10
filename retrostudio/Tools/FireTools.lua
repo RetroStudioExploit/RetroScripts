@@ -1,10 +1,10 @@
 --[[
     Modes:
-    Vector3
-    Player
-    CFrame
+    vector
+    player
+    cframe
 ]]--
-local mode = "vector3"
+local mode = "vector"
 local array = 1
 local remoteFunc = false
 
@@ -53,30 +53,33 @@ end
 function parseArgs()
     local root = getRootSafe(false)
     local root2 = getRootSafe(true)
-    if root == nil then return end
+    if root == nil or root2 == nil then return end
 
     local tbl
     if array == 1 then
         if mode == "vector" then
-            tbl = {[1] = root}
+            tbl = {[1] = root.Position}
         elseif  mode == "player" then
             tbl = {[1] = root2}
         else
-            tbl = {[1] = CFrame.new(root), [2] = true}
+            tbl = {[1] = CFrame.new(root.Position), [2] = true}
         end
     else
         if mode == "vector" then
-            tbl = {[1] = {[1] = root}}
+            tbl = {[1] = {[1] = root.Position}}
         elseif  mode == "player" then
             tbl = {[1] = {[1] = root2}}
         else
-            tbl = {[1] = {[1] = CFrame.new(root), [2] = true}}
+            tbl = {[1] = {[1] = CFrame.new(root.Position), [2] = true}}
         end
     end
     return tbl
 end
 
 for _, remote in pairs(callbacks) do
-    local out = inlinedRemote(remote, parseArgs())
+    local args = parseArgs()
+    if args == nil then continue end
+
+    local out = inlinedRemote(remote, args)
     if out ~= nil then print("Output: " .. out) end
 end
