@@ -37,7 +37,7 @@ for _, v in game:GetDescendants() do
     if v:IsA("Tool") then
         for _, tool_child in v:GetDescendants() do
             if tool_child:IsA(remoteFunc and "RemoteFunction" or "RemoteEvent") then
-                table.insert(tool_child, v)
+                table.insert(callbacks, tool_child)
             end
         end
     end
