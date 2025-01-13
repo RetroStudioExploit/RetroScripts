@@ -13,6 +13,7 @@ for _, v in game:GetDescendants() do
                     [4] = false
                 }
             }))
+            break
         end
     end
 end
