@@ -22,67 +22,34 @@ local reasons = {"Scamming", "Farting Owner", "Exploitng", "Bypassing Chat", "Ha
 local function parseArgs(p, reason)
     local bantable = {}
     if aMethod == 1 then
-        bantable = {
-            [1] = {
-                [1] = p,
-                [2] = p,
-                [3] = reason
-            }
-        }
+        bantable = {[1] = {[1] = p, [2] = p, [3] = reason}}
     elseif aMethod == 2 then
-        bantable = {
-            [1] = {
-                [1] = p.UserId,
-                [2] = p.UserId,
-                [3] = reason
-            }
-        }
+        bantable = {[1] = {[1] = p.UserId, [2] = p.UserId, [3] = reason}}
     elseif aMethod == 3 then
-        bantable = {
-            [1] = {
-                [1] = p.Name,
-                [2] = p.Name,
-                [3] = reason
-            }
-        }
+        bantable = {[1] = {[1] = p.Name, [2] = p.Name, [3] = reason}}
     elseif aMethod == 4 then
-        bantable = {
-            [1] = p.UserId,
-            [2] = '',
-            [3] = '',
-            [4] = '',
-            [5] = '',
-        }
+        bantable = {[1] = p.UserId, [2] = reason, [3] = '', [4] = '', [5] = ''}
     elseif aMethod == 5 then
-        bantable = {
-            [1] = p.Name,
-            [2] = '',
-            [3] = '',
-            [4] = '',
-            [5] = '',
-        }
+        bantable = {[1] = p.Name, [2] = reason, [3] = '', [4] = '', [5] = ''}
     else
-        bantable = {
-            [1] = p,
-            [2] = '',
-            [3] = '',
-            [4] = '',
-            [5] = '',
-        }
+        bantable = {[1] = p, [2] = reason, [3] = '', [4] = '', [5] = ''}
     end
     return bantable
 end
 local function doRemote(tbl:table)
+    local retval = nil
     for _, remote in pairs(getType(game, isFunction and "RemoteFunction" or "RemoteEvent", banName)) do
         if isFunction then
-            remote:InvokeServer(unpack(tbl))
+            retval = remote:InvokeServer(unpack(tbl))
         else
-            remote:FireServer(unpack(tbl))
+            retval = remote:FireServer(unpack(tbl))
         end
     end
+    return retval
 end
 
 for _, p in PS:GetPlayers() do
     if p == PS.LocalPlayer then continue end
-    doRemote(parseArgs(p, reasons[math.random(0, #reasons)]))
+    local foundval = doRemote(parseArgs(p, reasons[math.random(0, #reasons)]))
+    if foundval ~= nil then print("Returned Remote: " .. foundval) end
 end
