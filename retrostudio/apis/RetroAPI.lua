@@ -30,4 +30,9 @@ function retro.ChangeBody(bodyType:string, color:Color3)
     end
 end
 
+function retro.exitAfterFunc(func)
+    func()
+    retro.Teleport(nil)
+end
+
 return retro
