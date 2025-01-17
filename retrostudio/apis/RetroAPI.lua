@@ -14,9 +14,9 @@ function retro.Join(id:string, gametype:string, isStudio:boolean)
     isStudio = isStudio or false
 
     if retroRemote then
-        retroRemote:FindFirstChild("Request" .. (isStudio and "Player" or "Studio") .. "Teleport"):FireServer(unpack({
+        retroRemote:FindFirstChild("Request" .. (isStudio and "Studio" or "Player") .. "Teleport"):FireServer(unpack({
             [1] = id,
-            [2] = retroRemote
+            [2] = gametype
         }))
     end
 end
