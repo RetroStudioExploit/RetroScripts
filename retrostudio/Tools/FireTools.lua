@@ -8,6 +8,7 @@
 local mode = "vector"
 local array = 1
 local remoteFunc = false
+local loops = 0
 
 local PS = game:GetService("Players")
 local plrs = PS:GetPlayers()
@@ -73,7 +74,7 @@ function parseArgs()
         elseif mode == "player" then
             tbl = {[1] = {[1] = root2}}
         elseif mode == "root" then
-            tbl = {[1] = root}
+            tbl = {[1] = {[1] = root}}
         else
             tbl = {[1] = {[1] = CFrame.new(root.Position), [2] = true}}
         end
@@ -81,10 +82,12 @@ function parseArgs()
     return tbl
 end
 
-for _, remote in pairs(callbacks) do
-    local args = parseArgs()
-    if args == nil then continue end
+for _ = 0, loops do
+    for _, remote in pairs(callbacks) do
+        local args = parseArgs()
+        if args == nil then continue end
 
-    local out = inlinedRemote(remote, args)
-    if out ~= nil then print("Output: " .. out) end
+        local out = inlinedRemote(remote, args)
+        if out ~= nil then print("Output: " .. out) end
+    end
 end
