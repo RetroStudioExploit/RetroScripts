@@ -12,7 +12,12 @@ function getType(istan:Instance, type_name:string, name:string):table
     return type_tbl
 end
 
-local parts = getType(workspace, "Part", nil)
+local bodies = {}
+for _, body in pairs(getType(workspace, "Part", nil)) do
+    if body.Name == "Torso" then
+        table.insert(bodies, body)
+    end
+end
 for _, push_event in pairs(getType(game, "RemoteEvent", "Push")) do
-    push_event:FireServer(unpack({[1] = {[1] = parts[math.random(0, #parts)]}}))
+    push_event:FireServer(unpack({[1] = {[1] = bodies[math.random(0, #bodies)]}}))
 end
