@@ -2,6 +2,7 @@
     Modes:
     vector
     player
+    root
     cframe
 ]]--
 local mode = "vector"
@@ -59,16 +60,20 @@ function parseArgs()
     if array == 1 then
         if mode == "vector" then
             tbl = {[1] = root.Position}
-        elseif  mode == "player" then
+        elseif mode == "player" then
             tbl = {[1] = root2}
+        elseif mode == "root" then
+            tbl = {[1] = root}
         else
             tbl = {[1] = CFrame.new(root.Position), [2] = true}
         end
     else
         if mode == "vector" then
             tbl = {[1] = {[1] = root.Position}}
-        elseif  mode == "player" then
+        elseif mode == "player" then
             tbl = {[1] = {[1] = root2}}
+        elseif mode == "root" then
+            tbl = {[1] = root}
         else
             tbl = {[1] = {[1] = CFrame.new(root.Position), [2] = true}}
         end
