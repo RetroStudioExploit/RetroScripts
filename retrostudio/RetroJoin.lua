@@ -1,5 +1,5 @@
-local github = 'https://raw.githubusercontent.com/system32unknown/'
+local github = 'https://raw.githubusercontent.com/RetroStudioExploit/'
 local suffix = '/refs/heads/main/'
 
-local NOTE = loadstring(game:HttpGet(github .. 'Roblox' .. suffix .. 'retrostudio/apis/RetroAPI.lua'))()
-NOTE.Join("2492682671_54")
+local API = loadstring(game:HttpGet(github .. 'RetroScripts' .. suffix .. 'retrostudio/apis/RetroAPI.lua'))()
+API.Join("2492682671_54")
