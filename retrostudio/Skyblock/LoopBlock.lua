@@ -1,4 +1,6 @@
-local dist = 1000
+local delay = .5
+local radius = 10
+_G.TOGGLEDBLOCK = not _G.TOGGLEDBLOCK
 
 local head = 'https://raw.githubusercontent.com/'
 local github = 'system32unknown/'
@@ -12,6 +14,13 @@ local API = loadstring(game:HttpGet(head .. github2 .. 'RetroScripts' .. suffix 
 local BlockStorage = game:GetService("Lighting").Blocks:GetChildren()
 local GameStorage = game:GetDescendants()
 
-for _, _ in BlockStorage do
-    API.Build(RNG.Vector(dist), BlockStorage[math.random(0, #BlockStorage)], GameStorage[math.random(0, #GameStorage)])
+local PS = game:GetService("Players")
+function getRoot(char):Part
+	return char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+end
+
+while _G.DRAWTOGGLE do
+    local chr = getRoot(PS.LocalPlayer.Character)
+    API.Build(chr.Position + RNG.Vector(radius), BlockStorage[math.random(0, #BlockStorage)], GameStorage[math.random(0, #GameStorage)])
+    task.wait(delay)
 end

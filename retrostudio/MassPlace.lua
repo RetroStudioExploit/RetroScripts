@@ -23,7 +23,7 @@ for _ = 0, loopLength do
     for _, lol in pairs(getType(game, "RemoteEvent", "Place")) do
         lol:FireServer(unpack({
             [1] = {
-                [1] = RNG.Vector3(100),
+                [1] = RNG.Vector(100),
                 [2] = lord[math.random(0, #lord)]
             }
         }))
