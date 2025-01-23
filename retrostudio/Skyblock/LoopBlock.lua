@@ -1,4 +1,4 @@
-local delay = .5
+local delay_ = .5
 local radius = 10
 _G.TOGGLEDBLOCK = not _G.TOGGLEDBLOCK
 
@@ -19,8 +19,8 @@ function getRoot(char):Part
 	return char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
 end
 
-while _G.DRAWTOGGLE do
+while _G.TOGGLEDBLOCK do
     local chr = getRoot(PS.LocalPlayer.Character)
     API.Build(chr.Position + RNG.Vector(radius), BlockStorage[math.random(0, #BlockStorage)], GameStorage[math.random(0, #GameStorage)])
-    task.wait(delay)
+    task.wait(delay_)
 end
