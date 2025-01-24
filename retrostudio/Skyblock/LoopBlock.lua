@@ -14,6 +14,8 @@ local API = loadstring(game:HttpGet(head .. github2 .. 'RetroScripts' .. suffix 
 local BlockStorage = game:GetService("Lighting").Blocks:GetChildren()
 local GameStorage = game:GetDescendants()
 
+local Folders = {"Unbreakable Blocks", "Floor Blocks", "Plants", "Breakable Blocks"}
+
 local PS = game:GetService("Players")
 function getRoot(char):Part
 	return char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
