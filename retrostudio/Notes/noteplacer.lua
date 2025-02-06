@@ -4,7 +4,7 @@ local github = 'https://raw.githubusercontent.com/system32unknown/'
 local suffix = '/refs/heads/main/'
 
 local RNG = loadstring(game:HttpGet(github .. 'Roblox' .. suffix .. 'RNG_LIB.lua'))()
-local NOTE = loadstring(game:HttpGet(github .. 'Roblox' .. suffix .. 'retrostudio/noteapi.lua'))()
+local NOTE = loadstring(game:HttpGet(github .. 'Roblox' .. suffix .. 'retrostudio/Notes/noteapi.lua'))()
 
 for i = 0, loops do
     NOTE.change(RNG.Char(300, 100), RNG.Color())
