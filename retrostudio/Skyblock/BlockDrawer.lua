@@ -1,4 +1,6 @@
 local word = "nazi"
+local dist = 2
+local offset = Vector3.new(0, 0, 0)
 
 local head = 'https://raw.githubusercontent.com/'
 local github = 'RetroStudioExploit/'
@@ -18,12 +20,10 @@ end
 
 for _, player in PS:GetPlayers() do
 	for _, v in pairs(ARTS.slurs[word]) do
-		if not player:FindFirstChild("Character") then continue end
-
 		local chr = getRoot(player.Character)
 		if chr == nil then continue end
 
-		local vec = Vector3.new(v.X + chr.Position.X, v.Y + chr.Position.Y, chr.Position.Z)
-		API.Build(vec, choosenBlock, workspace["Unbreakable Block"])
+		local vec:Vector3 = Vector3.new(((v.X * dist) + chr.Position.X)  + offset.X, ((v.Y * dist) + chr.Position.Y) + offset.Y, chr.Position.Z + offset.Z)
+		API.Build(vec, choosenBlock, workspace["Unbreakable Blocks"])
 	end
 end
