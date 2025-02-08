@@ -17,12 +17,13 @@ function getRoot(char):Part
 end
 
 for _, player in PS:GetPlayers() do
-	for _, v in pairs(ARTS[word]) do
-        if not player:FindFirstChild("Character") then continue end
+	for _, v in pairs(ARTS.slurs[word]) do
+		if not player:FindFirstChild("Character") then continue end
 
 		local chr = getRoot(player.Character)
 		if chr == nil then continue end
 
-        API.Build(v.X + chr.Position.X, v.Y + chr.Position.Y, chr.Position.Z, choosenBlock, workspace)
+		local vec = Vector3.new(v.X + chr.Position.X, v.Y + chr.Position.Y, chr.Position.Z)
+		API.Build(vec, choosenBlock, workspace["Unbreakable Block"])
 	end
 end
