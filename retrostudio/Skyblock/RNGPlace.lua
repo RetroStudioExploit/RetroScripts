@@ -9,4 +9,4 @@ local suffix = '/refs/heads/main/'
 local RNG = loadstring(game:HttpGet(head .. github .. 'Roblox' .. suffix .. 'RNG_LIB.lua'))()
 local API = loadstring(game:HttpGet(head .. github2 .. 'RetroScripts' .. suffix .. 'retrostudio/Skyblock/SkyblockApi.lua'))()
 
-API.Build(RNG.Vector(dist))
+API.Build(RNG.Vector(dist), game)
