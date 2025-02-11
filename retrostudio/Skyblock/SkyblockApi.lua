@@ -1,9 +1,9 @@
 local skyblock = {}
 skyblock.__index = skyblock
 
-function getBlocks(instance:Instance):table
+function getBlocks(parent):table
     local tools = {}
-    for _, v in instance:GetDescendants() do
+    for _, v in parent:GetDescendants() do
         if v.Name == "Place" and v:IsA("RemoteEvent") then
             if v.Parent:IsA("Tool") then
                 table.insert(tools, v)
@@ -13,9 +13,9 @@ function getBlocks(instance:Instance):table
     return tools
 end
 
-function skyblock.Build(pos:Vector3, instance:Instance)
-    instance = instance or game
-    for _, tools in pairs(getBlocks(instance)) do
+function skyblock.Build(pos:Vector3, parent)
+    parent = parent or game
+    for _, tools in pairs(getBlocks(parent)) do
         tools:FireServer(unpack({[1] = {[1] = pos, [2] = true}}))
     end
 end
