@@ -1,7 +1,7 @@
 local skyblock = {}
 skyblock.__index = skyblock
 
-function getBlocks(storageType:string, instance:Instance):table
+function getBlocks(instance:Instance):table
     local tools = {}
     for _, v in instance:GetDescendants() do
         if v.Name == "Place" and v:IsA("RemoteEvent") then
