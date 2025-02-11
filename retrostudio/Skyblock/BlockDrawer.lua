@@ -23,7 +23,7 @@ for _, player in PS:GetPlayers() do
 		local chr = getRoot(player.Character)
 		if chr == nil then continue end
 
-		local vec:Vector3 = Vector3.new(((v.X * dist) + chr.Position.X)  + offset.X, ((v.Y * dist) + chr.Position.Y) + offset.Y, chr.Position.Z + offset.Z)
-		API.Build(vec, choosenBlock, workspace["Unbreakable Blocks"])
+		local vec:Vector3 = Vector3.new((v.X * dist) + chr.Position.X, (v.Y * dist) + chr.Position.Y, chr.Position.Z) + offset
+		API.Build(vec)
 	end
 end

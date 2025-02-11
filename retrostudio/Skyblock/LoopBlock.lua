@@ -21,6 +21,6 @@ end
 
 while _G.TOGGLEDBLOCK do
     local chr = getRoot(PS.LocalPlayer.Character)
-    API.Build(chr.Position + RNG.Vector(radius), BlockStorage[math.random(0, #BlockStorage)], GameStorage[math.random(0, #GameStorage)])
+    API.Build(chr.Position + RNG.Vector(radius))
     task.wait(delay_)
 end
