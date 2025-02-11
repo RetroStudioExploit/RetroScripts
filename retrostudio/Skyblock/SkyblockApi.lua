@@ -1,10 +1,9 @@
 local skyblock = {}
 skyblock.__index = skyblock
 
-function getBlocks(storageType:string):table
+function getBlocks(storageType:string, instance:Instance):table
     local tools = {}
-    local storage = (storageType == "lighting" and game.Lighting or workspace)
-    for _, v in storage:GetDescendants() do
+    for _, v in instance:GetDescendants() do
         if v.Name == "Place" and v:IsA("RemoteEvent") then
             if v.Parent:IsA("Tool") then
                 table.insert(tools, v)
@@ -14,14 +13,10 @@ function getBlocks(storageType:string):table
     return tools
 end
 
-function skyblock.Build(pos:Vector3)
-    for _, tools in pairs(getBlocks("workspace")) do
-        tools:FireServer(unpack({
-            [1] = {
-                [1] = pos,
-                [2] = true
-            }
-        }))
+function skyblock.Build(pos:Vector3, instance:Instance)
+    instance = instance or game
+    for _, tools in pairs(getBlocks(instance)) do
+        tools:FireServer(unpack({[1] = {[1] = pos, [2] = true}}))
     end
 end
 function skyblock.BuildOld(pos:Vector3, from, to)
