@@ -10,6 +10,8 @@ local array = 1
 local remoteFunc = false
 local loops = 0
 
+local noLP = false
+
 local PS = game:GetService("Players")
 local plrs = PS:GetPlayers()
 
@@ -21,6 +23,11 @@ function getRootSafe(noroot:boolean)
 
     local root = nil
     local selected_plr = plrs[math.random(0, #plrs)]
+
+    if noLP and selected_plr == PS.LocalPlayer then
+        return root
+    end
+
     if selected_plr ~= nil then
         if not noroot then
             local plr_char = selected_plr.Character or selected_plr.CharacterAdded:Wait()
@@ -59,24 +66,16 @@ function parseArgs()
 
     local tbl
     if array == 1 then
-        if mode == "vector" then
-            tbl = {[1] = root.Position}
-        elseif mode == "player" then
-            tbl = {[1] = root2}
-        elseif mode == "root" then
-            tbl = {[1] = root}
-        else
-            tbl = {[1] = CFrame.new(root.Position), [2] = true}
+        if mode == "vector" then tbl = {[1] = root.Position}
+        elseif mode == "player" then tbl = {[1] = root2}
+        elseif mode == "root" then tbl = {[1] = root}
+        else tbl = {[1] = CFrame.new(root.Position), [2] = true}
         end
     else
-        if mode == "vector" then
-            tbl = {[1] = {[1] = root.Position}}
-        elseif mode == "player" then
-            tbl = {[1] = {[1] = root2}}
-        elseif mode == "root" then
-            tbl = {[1] = {[1] = root}}
-        else
-            tbl = {[1] = {[1] = CFrame.new(root.Position), [2] = true}}
+        if mode == "vector" then tbl = {[1] = {[1] = root.Position}}
+        elseif mode == "player" then tbl = {[1] = {[1] = root2}}
+        elseif mode == "root" then tbl = {[1] = {[1] = root}}
+        else tbl = {[1] = {[1] = CFrame.new(root.Position), [2] = true}}
         end
     end
     return tbl
