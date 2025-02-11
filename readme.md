@@ -6,5 +6,5 @@
   <br>
 </h1>
 
-> **Warning**
+> :warning: **Warning:**
 > IF YOU'RE RETROSTUDIO DEVELOPER / MODERATOR / ADMIN, THEN GET THE FUCK OUT
