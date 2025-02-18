@@ -39,13 +39,10 @@ end
 
 function skyblock.BreakBlock(k:Part, block:any, DestroyPercent:number)
     local bds = REFLECT.getEvents("BlockDamage")
-    bds[math.random(0, #bds)]:FireServer(unpack({
-        [1] = {
-            [1] = k,
-            [2] = block,
-            [3] = DestroyPercent
-        }
-    }))
+    local remote = bds[math.random(0, #bds)]
+    if remote == nil then return end
+
+    remote:FireServer(unpack({[1] = {[1] = k, [2] = block, [3] = DestroyPercent }}))
 end
 function skyblock.BreakBlockOld(k:Part, DestroyPercent:number, mode:number, destroyed:boolean)
     warn("Use New BreakBlock instead.")
