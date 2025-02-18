@@ -38,8 +38,8 @@ function skyblock.BuildOld(pos:Vector3, from, to)
 end
 
 function skyblock.BreakBlock(k:Part, block:any, DestroyPercent:number)
-    local dr:RemoteEvent = REFLECT.getEvent("BlockDamage")
-    dr:FireServer(unpack({
+    local bds = REFLECT.getEvents("BlockDamage")
+    bds[math.random(0, #bds)]:FireServer(unpack({
         [1] = {
             [1] = k,
             [2] = block,
