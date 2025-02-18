@@ -4,7 +4,7 @@ local suffix = '/refs/heads/main/'
 function loadScript(url:string)
     return loadstring(game:HttpGet(url))()
 end
-local API = loadScript(github .. 'RetroScripts' .. suffix .. 'Globals/Reflect.lua')
+local API = loadstring(game:HttpGet(github .. 'RetroScripts' .. suffix .. 'retrostudio/Skyblock/SkyblockApi.lua'))()
 local tools = {}
 for _, tool in game.Lighting:GetDescendants() do
     if tool:IsA("Tool") then
