@@ -10,6 +10,7 @@ function loadScript(url:string)
 end
 
 local REFLECT = loadScript(head .. github .. 'RetroScripts' .. suffix .. 'Globals/Reflect.lua')
+local BDS = REFLECT.getEvents("BlockDamage")
 
 function getBlocks(parent):table
     local tools = {}
@@ -38,8 +39,7 @@ function skyblock.BuildOld(pos:Vector3, from, to)
 end
 
 function skyblock.BreakBlock(k:Part, block:any, DestroyPercent:number)
-    local bds = REFLECT.getEvents("BlockDamage")
-    local remote = bds[math.random(0, #bds)]
+    local remote = BDS[math.random(0, #BDS)]
     if remote == nil then return end
 
     remote:FireServer(unpack({[1] = {[1] = k, [2] = block, [3] = DestroyPercent }}))
