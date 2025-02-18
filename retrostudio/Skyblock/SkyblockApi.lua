@@ -1,6 +1,16 @@
 local skyblock = {}
 skyblock.__index = skyblock
 
+local head = 'https://raw.githubusercontent.com/'
+local github = 'RetroStudioExploit/'
+local suffix = '/refs/heads/main/'
+
+function loadScript(url:string)
+    return loadstring(game:HttpGet(url))()
+end
+
+local REFLECT = loadScript(head .. github .. 'RetroScripts' .. suffix .. 'Globals/Reflect.lua')
+
 function getBlocks(parent):table
     local tools = {}
     for _, v in parent:GetDescendants() do
@@ -20,12 +30,26 @@ function skyblock.Build(pos:Vector3, parent)
     end
 end
 function skyblock.BuildOld(pos:Vector3, from, to)
-    warn("Use Build instead.")
-    -- local remote:RemoteEvent = workspace.BlockUpdate
-    -- remote:FireServer(unpack({[1] = {[1] = pos, [2] = from, [3] = to, [4] = false}}))
+    warn("Use New Build instead.")
+    --[[
+    local remote:RemoteEvent = workspace.BlockUpdate
+    remote:FireServer(unpack({[1] = {[1] = pos, [2] = from, [3] = to, [4] = false}}))
+    ]]--
 end
 
-function skyblock.BreakBlock(k:Part, DestroyPercent:number, mode:number, destroyed:boolean)
+function skyblock.BreakBlock(k:Part, block:any, DestroyPercent:number)
+    local dr:RemoteEvent = REFLECT.getEvent("BlockDamage")
+    dr:FireServer(unpack({
+        [1] = {
+            [1] = k,
+            [2] = block,
+            [3] = DestroyPercent
+        }
+    }))
+end
+function skyblock.BreakBlockOld(k:Part, DestroyPercent:number, mode:number, destroyed:boolean)
+    warn("Use New BreakBlock instead.")
+    --[[
     local remote:RemoteEvent = workspace.BlockDamage
     remote:FireServer(unpack({
         [1] = {
@@ -36,6 +60,7 @@ function skyblock.BreakBlock(k:Part, DestroyPercent:number, mode:number, destroy
             [5] = "_RETROSAFENIL_"
         }
     }))
+    ]]
 end
 
 return skyblock
