@@ -12,7 +12,7 @@ end
 local REFLECT = loadScript(head .. github .. 'RetroScripts' .. suffix .. 'Globals/Reflect.lua')
 local BDS = REFLECT.getEvents("BlockDamage")
 
-function getBlocks(parent):table
+function skyblock.getBlocks(parent):table
     local tools = {}
     for _, v in parent:GetDescendants() do
         if v.Name == "Place" and v:IsA("RemoteEvent") then
@@ -26,12 +26,12 @@ end
 
 function skyblock.Build(pos:Vector3, parent)
     parent = parent or game
-    for _, tools in pairs(getBlocks(parent)) do
+    for _, tools in pairs(skyblock.getBlocks(parent)) do
         tools:FireServer(unpack({[1] = {[1] = pos, [2] = true}}))
     end
 end
 function skyblock.BuildOld(pos:Vector3, from, to)
-    warn("Use New Build instead.")
+    warn("Use New getBlocks instead.")
     --[[
     local remote:RemoteEvent = workspace.BlockUpdate
     remote:FireServer(unpack({[1] = {[1] = pos, [2] = from, [3] = to, [4] = false}}))
