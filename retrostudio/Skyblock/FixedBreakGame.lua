@@ -14,7 +14,7 @@ end
 
 local msg = Instance.new("Message", workspace)
 msg.Text = "Destroying Game..."
-for _, v in game:GetDescendants() do
+for _, v in workspace:GetDescendants() do
     API.BreakBlock(v, false, 999)
 end
 msg.Text = "Done."
