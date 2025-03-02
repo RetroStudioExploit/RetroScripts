@@ -25,14 +25,17 @@ function buildBlock(tools:RemoteEvent, pos)
     end
 end
 
+local blocks = API.getBlocks(game)
 for _, player in PS:GetPlayers() do
-	for _, tools in pairs(API.getBlocks(game)) do
-		for _, v in pairs(ARTS.slurs[word]) do
-			local chr = getRoot(player.Character)
-			if chr == nil then continue end
+	for i, v in pairs(ARTS.slurs[word]) do
+		local chr = getRoot(player.Character)
+		if chr == nil then continue end
 
-			local vec:Vector3 = Vector3.new((v.X * dist) + chr.Position.X, (v.Y * dist) + chr.Position.Y, chr.Position.Z) + offset
-			buildBlock(tools, vec)
+		local isBlock = blocks[i]
+		if isBlock == nil then
+			print("Block in inventory is empty, aborting...")
+			break
 		end
+		buildBlock(isBlock, Vector3.new((v.X * dist) + chr.Position.X, (v.Y * dist) + chr.Position.Y, chr.Position.Z) + offset)
 	end
 end
