@@ -19,6 +19,6 @@ for _, player in PS:GetPlayers() do
 		local chr = getRoot(player.Character)
 		if chr == nil then continue end
 
-        API.build(Vector3.new((v.X * dist) + chr.Position.X, (v.Y * dist) + chr.Position.Y, chr.Position.Z) + offset, "neon", BrickColor.new("Really black"))
+        API.Build(Vector3.new((v.X * dist) + chr.Position.X, (v.Y * dist) + chr.Position.Y, chr.Position.Z) + offset, "neon", BrickColor.new("Really black"))
 	end
 end

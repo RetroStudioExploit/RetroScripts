@@ -3,7 +3,7 @@ BB.__index = BB
 
 local BP:Backpack = game:GetService("Players").LocalPlayer.Backpack
 
-function BB.build(pos:Vector3, material:string, color:BrickColor)
+function BB.Build(pos:Vector3, material:string, color:BrickColor)
     BP.Build.RemoteEvent:FireServer(unpack({
         [1] = pos,
         [2] = material,
@@ -12,7 +12,7 @@ function BB.build(pos:Vector3, material:string, color:BrickColor)
         [5] = ""
     }))
 end
-function BB.delete(obj)
+function BB.Delete(obj)
     BP.Destroy.RemoteEvent:FireServer(unpack({
         [1] = obj,
         [2] = "",

@@ -4,6 +4,6 @@ local API = loadstring(game:HttpGet(github .. 'RetroScripts' .. suffix .. 'retro
 
 for _, v in workspace:GetDescendants() do
     if v:IsA("Part") or v:IsA("BasePart") then
-        API.delete(v)
+        API.Delete(v)
     end
 end
