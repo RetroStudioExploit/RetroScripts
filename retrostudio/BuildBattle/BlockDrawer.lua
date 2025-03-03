@@ -10,7 +10,7 @@ function loadScript(url:string)
     return loadstring(game:HttpGet(url))()
 end
 
-local ARTS = loadScript(head .. github .. 'RetroScripts' .. suffix .. 'Globals/CframeArts.lua')()
+local ARTS = loadScript(head .. github .. 'RetroScripts' .. suffix .. 'Globals/CframeArts.lua')
 local REFLECT = loadScript(head .. github .. 'RetroScripts' .. suffix .. 'Globals/Reflect.lua')
 
 local PS = game:GetService("Players")
@@ -24,6 +24,7 @@ for _, v in pairs(REFLECT.getType(game, "RemoteEvent")) do
 		table.insert(tools, v)
 	end
 end
+
 function Build(pos:Vector3, material:string, color:BrickColor)
 	local remote = tools[math.random(0, #tools)]
 	if remote == nil then return end
