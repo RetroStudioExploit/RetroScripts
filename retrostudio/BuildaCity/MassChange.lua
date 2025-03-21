@@ -10,4 +10,4 @@ local github = 'RetroStudioExploit/'
 
 local API = loadScript(head ..github .. 'RetroScripts' .. suffix .. 'retrostudio/BuildaCity/BCAPI.lua')
 
-API.changeAllSign("Hacked")
+API.changeAllSign(txt)
