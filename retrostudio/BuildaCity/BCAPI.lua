@@ -1,6 +1,8 @@
 local BC = {}
 BC.__index = BC
 
+BC.debugmode = true
+
 local BlockFolder = workspace.System.BlockFolder
 local ServerBuild = BlockFolder.ServerBuild
 
@@ -38,6 +40,10 @@ function BC.changeAllSign(txt:string)
             if v.Parent ~= nil then
                 _sign = v.Parent
             else continue end
+
+            if BC.debugmode then
+                print("Changed " .. _sign:GetFullName() .. "to " .. txt)
+            end
             v:FireServer(unpack({
                 [1] = {
                     [1] = _sign,
