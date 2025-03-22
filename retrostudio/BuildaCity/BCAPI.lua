@@ -35,14 +35,13 @@ function BC.changeSign(id:number, text:string)
 end
 function BC.changeAllSign(txt:string)
     local _sign = nil
-    for _, v in BlockFolder:GetDescendants() do
+    for _, v in game:GetDescendants() do
         if v:IsA("RemoteEvent") and v.Name == "UpdateSign" then
-            if v.Parent ~= nil then
-                _sign = v.Parent
+            if v.Parent ~= nil then  _sign = v.Parent
             else continue end
 
             if BC.debugmode then
-                print("Changed " .. _sign:GetFullName() .. "to " .. txt)
+                print("Changed " .. _sign:GetFullName() .. " to " .. txt)
             end
             v:FireServer(unpack({
                 [1] = {
