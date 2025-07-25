@@ -50,11 +50,10 @@ end
 
 local callbacks = {}
 for _, v in game:GetDescendants() do
-    if v:IsA("Tool") then
-        for _, tool_child in v:GetDescendants() do
-            if tool_child:IsA(remoteFunc and "RemoteFunction" or "RemoteEvent") then
-                table.insert(callbacks, tool_child)
-            end
+    if not v:IsA("Tool") then continue end
+    for _, tool_child in v:GetDescendants() do
+        if tool_child:IsA(remoteFunc and "RemoteFunction" or "RemoteEvent") then
+            table.insert(callbacks, tool_child)
         end
     end
 end
@@ -65,18 +64,16 @@ function parseArgs()
     if root == nil or root2 == nil then return end
 
     local tbl
-    if array == 1 then
-        if mode == "vector" then tbl = {[1] = root.Position}
-        elseif mode == "player" then tbl = {[1] = root2}
-        elseif mode == "root" then tbl = {[1] = root}
-        else tbl = {[1] = CFrame.new(root.Position), [2] = true}
-        end
-    else
-        if mode == "vector" then tbl = {[1] = {[1] = root.Position}}
-        elseif mode == "player" then tbl = {[1] = {[1] = root2}}
-        elseif mode == "root" then tbl = {[1] = {[1] = root}}
-        else tbl = {[1] = {[1] = CFrame.new(root.Position), [2] = true}}
-        end
+
+    if mode == "vector" then tbl = {root.Position}
+    elseif mode == "player" then tbl = {root2}
+    elseif mode == "root" then tbl = {root}
+    else tbl = {CFrame.new(root.Position), true}
+    end
+
+    if array > 1 then
+        local cloned_table = table.clone(tbl)
+        tbl = {cloned_table}
     end
     return tbl
 end

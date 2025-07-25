@@ -8,7 +8,7 @@ function getInstance(name:string, instanceName:string)
     return t
 end
 
-local reasons = {"Scamming", "Farting Owner", "Exploitng", "Bypassing Chat", "Harassment", "Bullying someone", "Inappropriate Avator / Name", "Touching minors", "OWO!!!! HACKED BY FRISKSHIFT!!", "FRISKSHIFT IS BACK"}
+local reasons = {"Scamming", "Farting Owner", "Exploitng", "Bypassing Chat", "Harassment", "Bullying someone", "Inappropriate Avator / Name", "OWO!!!! HACKED BY FRISKSHIFT!!", "FRISKSHIFT IS BACK"}
 
 local PS = game:GetService("Players")
 for _, remote in pairs(getInstance("Ban", "RemoteEvent")) do

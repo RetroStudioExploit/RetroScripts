@@ -1,4 +1,3 @@
-
 local glasses:table = {}
 for _, v in workspace:GetDescendants() do
     if v.Name == "GlassPannel" then

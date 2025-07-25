@@ -13,12 +13,12 @@ end
 function reflect.getType(istan:Instance, type_name:string, name:string):table
     local type_tbl = {}
     for _, even in istan:GetDescendants() do
-        if even:IsA(type_name) then
-            if name == nil then
-                table.insert(type_tbl, even)
-            elseif even.Name == name then
-                table.insert(type_tbl, even)
-            end
+        if not even:IsA(type_name) then continue end
+
+        if name == nil then
+            table.insert(type_tbl, even)
+        elseif even.Name == name then
+            table.insert(type_tbl, even)
         end
     end
     return type_tbl
