@@ -15,5 +15,9 @@ function meetings.msg2(msg:string)
     if ss == nil then return end
     ss:WaitForChild("Messages2"):WaitForChild("MSG"):InvokeServer(unpack({{msg}}))
 end
+function meetings.music(on:boolean)
+    if ss == nil then return end
+    ss:WaitForChild("MusicControl"):WaitForChild("Change"):InvokeServer(unpack({{on}}))
+end
 
 return meetings
