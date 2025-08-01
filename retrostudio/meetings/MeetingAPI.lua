@@ -9,7 +9,11 @@ function meetings.barrier(on:boolean)
 end
 function meetings.msg(msg:string)
     if ss == nil then return end
-    ss:WaitForChild("Messages"):WaitForChild("Messages"):WaitForChild("MSG"):InvokeServer(unpack({{msg}}))
+    ss:WaitForChild("Messages"):WaitForChild("MSG"):InvokeServer(unpack({{msg}}))
+end
+function meetings.msg2(msg:string)
+    if ss == nil then return end
+    ss:WaitForChild("Messages2"):WaitForChild("MSG"):InvokeServer(unpack({{msg}}))
 end
 
 return meetings
