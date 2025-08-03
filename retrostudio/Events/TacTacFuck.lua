@@ -15,10 +15,10 @@ end
 local fag = workspace:GetDescendants()
 for _, lol in pairs(getType(game, "RemoteEvent", "Place")) do
     lol:FireServer(unpack({
-        [1] = {
-            [1] = fag[math.random(0, #fag)],
-            [2] = fag[math.random(0, #fag)],
-            [3] = fag[math.random(0, #fag)]
+        {
+            fag[math.random(0, #fag)],
+            fag[math.random(0, #fag)],
+            fag[math.random(0, #fag)]
         }
     }))
 end

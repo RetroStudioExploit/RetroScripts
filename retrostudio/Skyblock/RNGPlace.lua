@@ -12,10 +12,10 @@ local API = loadstring(game:HttpGet(head .. github2 .. 'RetroScripts' .. suffix 
 
 for _, tools in pairs(API.getBlocks(game)) do
     if modes == 1 then
-        tools:FireServer(unpack({[1] = {[1] = RNG.Vector(dist), [2] = true}}))
+        tools:FireServer(unpack({{RNG.Vector(dist), [2] = true}}))
     elseif modes == 2 then
-        tools:FireServer(unpack({[1] = {[1] = RNG.Vector(dist)}}))
+        tools:FireServer(unpack({{RNG.Vector(dist)}}))
     else
-        tools:FireServer(unpack({[1] = {[1] = RNG.CFrame(dist, 360)}}))
+        tools:FireServer(unpack({{RNG.CFrame(dist, 360)}}))
     end
 end

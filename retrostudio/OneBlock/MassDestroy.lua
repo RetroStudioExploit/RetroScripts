@@ -14,5 +14,5 @@ end
 
 local lord = game:GetDescendants()
 for _, lol in pairs(getType(game, "RemoteEvent", "GlobalDestroy")) do
-    lol:FireServer(unpack({[1] = {[1] = lord[math.random(0, #lord)]}}))
+    lol:FireServer(unpack({{lord[math.random(0, #lord)]}}))
 end

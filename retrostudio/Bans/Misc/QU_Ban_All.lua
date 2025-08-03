@@ -11,6 +11,6 @@ local BAN:RemoteEvent = QU_REMOTE.BanPlayer
 RETROAPI.exitAfterFunc(function()
     for _, v in PS:GetPlayers() do
         if v == PS.LocalPlayer then continue end
-        BAN:FireServer(unpack({[1] = {[1] = v.Name}}))
+        BAN:FireServer(unpack({{v.Name}}))
     end
 end)

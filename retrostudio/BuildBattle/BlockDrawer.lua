@@ -28,13 +28,7 @@ end
 function Build(pos:Vector3, material:string, color:BrickColor)
 	local remote = tools[math.random(0, #tools)]
 	if remote == nil then return end
-    remote:FireServer(unpack({
-        [1] = pos,
-        [2] = material,
-        [3] = color,
-        [4] = "",
-        [5] = ""
-    }))
+    remote:FireServer(unpack({pos, material, color, "", ""}))
 end
 
 for _, player in PS:GetPlayers() do

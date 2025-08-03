@@ -16,13 +16,7 @@ end
 function Delete(obj)
     local remote = tools[math.random(0, #tools)]
 	if remote == nil then return end
-    remote:FireServer(unpack({
-        [1] = obj,
-        [2] = "",
-        [3] = "",
-        [4] = "",
-        [5] = ""
-    }))
+    remote:FireServer(unpack({obj, "", "", "", ""}))
 end
 
 for _, v in workspace:GetDescendants() do

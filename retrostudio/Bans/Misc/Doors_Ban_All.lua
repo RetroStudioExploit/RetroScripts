@@ -13,10 +13,10 @@ local PS = game:GetService("Players")
 for _, p in PS:GetPlayers() do
     if p == PS.LocalPlayer then continue end
     banPlr:FireServer(unpack({
-        [1] = {
-            [1] = p.UserId,
-            [2] = p.UserId,
-            [3] = "Exploiting"
+        {
+            p.UserId,
+            p.UserId,
+            "Exploiting"
         }
     }))
 end

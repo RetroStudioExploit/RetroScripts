@@ -20,14 +20,14 @@ function playSND(s:Sound)
         if sound_method == "play_audio" then
             local gd = game:GetDescendants()
             v:FireServer(unpack({
-                [1] = gd[math.random(0, #gd)],
-                [2] = s,
-                [3] = "",
-                [4] = "",
-                [5] = ""
+                gd[math.random(0, #gd)],
+                s,
+                "",
+                "",
+                ""
             }))
         else
-            v:FireServer(unpack({[1] = {[1] = s}}))
+            v:FireServer(unpack({{s}}))
         end
     end
 end

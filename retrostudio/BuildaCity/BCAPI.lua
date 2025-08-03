@@ -10,9 +10,9 @@ local Create:RemoteEvent = ServerBuild.CreateBlock
 
 function BC.build(cf:CFrame, blockType)
     Create:FireServer(unpack({
-        [1] = {
-            [1] = cf,
-            [2] = blockType
+        {
+            cf,
+            blockType
         }
     }))
 end
@@ -25,9 +25,9 @@ function BC.changeSign(id:number, text:string)
                 _sign = v.Parent
             else continue end
             v:FireServer(unpack({
-                [1] = {
-                    [1] = _sign,
-                    [2] = text
+                {
+                    _sign,
+                    text
                 }
             }))
         end
@@ -40,13 +40,10 @@ function BC.changeAllSign(txt:string)
             if v.Parent ~= nil then  _sign = v.Parent
             else continue end
 
-            if BC.debugmode then
-                print("Changed " .. _sign:GetFullName() .. " to " .. txt)
-            end
             v:FireServer(unpack({
-                [1] = {
-                    [1] = _sign,
-                    [2] = txt
+                {
+                    _sign,
+                    txt
                 }
             }))
         end

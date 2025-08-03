@@ -18,10 +18,10 @@ end
 
 for _, lol in pairs(getType(game, "RemoteEvent", "Paint")) do
     lol:FireServer(unpack({
-        [1] = 1,
-        [2] = "###",
-        [3] = BrickColor.random(),
-        [4] = RNG.Vector(1000),
-        [5] = "###"
+        1,
+        "###",
+        BrickColor.random(),
+        RNG.Vector(1000),
+        "###"
     }))
 end

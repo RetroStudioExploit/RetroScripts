@@ -3,10 +3,10 @@ local PS = game:GetService("Players")
 
 function init(p:Player, reason:string)
     if PS.LocalPlayer == p then return end
-    vote_api:FindFirstChild("initiate"):FireServer(unpack({[1] = {[1] = p,[2] = p, [3] = reason}}))
+    vote_api:FindFirstChild("initiate"):FireServer(unpack({{p, p, reason}}))
 end
 function vote(value:boolean)
-    vote_api:FindFirstChild("vote"):FireServer(unpack({[1] = {[1] = value}}))
+    vote_api:FindFirstChild("vote"):FireServer(unpack({{value}}))
 end
 
 for _, p in PS:GetPlayers() do

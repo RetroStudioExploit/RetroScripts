@@ -20,9 +20,9 @@ local ev = getType(game, "RemoteEvent", "Plant")
 for _, v in game:GetDescendants() do
     for _, lol in pairs(ev) do
         lol:FireServer(unpack({
-            [1] = {
-                [1] = RNG.CFrame(100, 360),
-                [2] = v
+            {
+                RNG.CFrame(100, 360),
+                v
             }
         }))
     end

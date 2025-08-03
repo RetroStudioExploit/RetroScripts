@@ -13,5 +13,5 @@ local REFLECT = loadScript(head .. github .. 'RetroScripts' .. suffix .. 'Global
 
 for i, _ in ReportLists:GetChildren() do
     local dr:RemoteEvent = REFLECT.getEvent("DeleteReport")
-    dr:FireServer(unpack({[1] = i, [2] = "", [3] = "", [4] = "", [5] = ""}))
+    dr:FireServer(unpack({i, "", "", "", ""}))
 end

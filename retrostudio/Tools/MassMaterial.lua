@@ -12,6 +12,6 @@ end
 local SetMaterial = getInstance("SetMaterial", "RemoteFunction")
 for _, part in workspace:GetDescendants() do
     if part:IsA("Part") or part:IsA("BasePart") then
-        SetMaterial:InvokeServer(unpack({[1] = part, [2] = Materials[math.random(0, #Materials)]}))
+        SetMaterial:InvokeServer(unpack({part, Materials[math.random(0, #Materials)]}))
     end
 end

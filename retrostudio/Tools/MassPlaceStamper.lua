@@ -21,10 +21,10 @@ local RNG = loadstring(game:HttpGet(github .. 'Roblox' .. suffix .. 'RNG_LIB.lua
 for _ = 0, times do
     for _, remote in pairs(p) do
         remote:InvokeServer(unpack({
-            [1] = {
-                [1] = gg[math.random(0, #gg)],
-                [2] = RNG.CFrame(radius, 360),
-                [3] = gg[math.random(0, #gg)]
+            {
+                gg[math.random(0, #gg)],
+                RNG.CFrame(radius, 360),
+                gg[math.random(0, #gg)]
             }
         }))
     end

@@ -19,5 +19,5 @@ for _, body in pairs(getType(workspace, "Part", nil)) do
     end
 end
 for _, push_event in pairs(getType(game, "RemoteEvent", "Push")) do
-    push_event:FireServer(unpack({[1] = {[1] = bodies[math.random(0, #bodies)]}}))
+    push_event:FireServer(unpack({{bodies[math.random(0, #bodies)]}}))
 end

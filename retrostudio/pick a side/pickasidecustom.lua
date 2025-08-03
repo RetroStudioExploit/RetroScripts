@@ -10,13 +10,7 @@ end
 
 function custom(r:string, b:string, by:string)
     for _, remote in pairs(getEvents("RemoteEvent")) do
-        remote:FireServer(unpack({
-            [1] = r,
-            [2] = b,
-            [3] = by,
-            [4] = "",
-            [5] = ""
-        }))
+        remote:FireServer(unpack({r, b, by, "", ""}))
     end
 end
 custom("around", "found out", "nil")

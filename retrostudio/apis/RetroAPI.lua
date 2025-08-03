@@ -7,7 +7,7 @@ local retroFunc = RS:FindFirstChild("RemoteFunctions")
 
 function retro.Teleport(id:number)
     id = id or 5846386835
-    RS:FindFirstChild("TeleportEvent"):FireServer(unpack({[1] = id}))
+    RS:FindFirstChild("TeleportEvent"):FireServer(unpack({id}))
 end
 
 function retro.Join(id:string, gametype:string, isStudio:boolean)
@@ -17,16 +17,16 @@ function retro.Join(id:string, gametype:string, isStudio:boolean)
 
     if retroRemote == nil then return end
     retroRemote:FindFirstChild("Request" .. (isStudio and "Studio" or "Player") .. "Teleport"):FireServer(unpack({
-        [1] = id,
-        [2] = gametype
+        id,
+        gametype
     }))
 end
 
 function retro.ChangeBody(bodyType:string, color:Color3)
     if retroRemote == nil then return end
     retroRemote:WaitForChild("ChangeAvatarBodyPartColor"):FireServer(unpack({
-        [1] = bodyType,
-        [2] = color
+        bodyType,
+        color
     }))
 end
 

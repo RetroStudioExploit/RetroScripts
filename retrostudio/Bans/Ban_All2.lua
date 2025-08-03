@@ -15,10 +15,10 @@ for _, remote in pairs(getInstance("Ban", "RemoteEvent")) do
     for _, player in PS:GetPlayers() do
         if player == PS.LocalPlayer then continue end
         remote:FireServer(unpack({
-            [1] = {
-                [1] = player.Name,
-                [2] = "_RETROSAFENIL_",
-                [3] = reasons[math.random(0, #reasons)]
+            {
+                player.Name,
+                "_RETROSAFENIL_",
+                reasons[math.random(0, #reasons)]
             }
         }))
     end

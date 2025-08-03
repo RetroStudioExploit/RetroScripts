@@ -22,17 +22,17 @@ local reasons = {"Scamming", "Farting Owner", "Exploitng", "Bypassing Chat", "Ha
 local function parseArgs(p, reason)
     local bantable = {}
     if aMethod == 1 then
-        bantable = {[1] = {[1] = p, [2] = p, [3] = reason}}
+        bantable = {{p, p, reason}}
     elseif aMethod == 2 then
-        bantable = {[1] = {[1] = p.UserId, [2] = p.UserId, [3] = reason}}
+        bantable = {{p.UserId, p.UserId, reason}}
     elseif aMethod == 3 then
-        bantable = {[1] = {[1] = p.Name, [2] = p.Name, [3] = reason}}
+        bantable = {{p.Name, p.Name, reason}}
     elseif aMethod == 4 then
-        bantable = {[1] = p.UserId, [2] = reason, [3] = '', [4] = '', [5] = ''}
+        bantable = {p.UserId, reason, '', '', ''}
     elseif aMethod == 5 then
-        bantable = {[1] = p.Name, [2] = reason, [3] = '', [4] = '', [5] = ''}
+        bantable = {p.Name, reason, '', '', ''}
     else
-        bantable = {[1] = p, [2] = reason, [3] = '', [4] = '', [5] = ''}
+        bantable = {p, reason, '', '', ''}
     end
     return bantable
 end

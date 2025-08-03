@@ -5,13 +5,7 @@ local PS = game:GetService("Players")
 local TransmissionText = "Hacked by Friskshift (Banned User)"
 
 local function DoTransmission(channel:number, text:string)
-    local output = Transmission:FireServer(unpack({
-        [0] = nil,
-        [1] = {
-            [1] = channel,
-            [2] = text
-        }
-    }))
+    local output = Transmission:FireServer(unpack({{channel, text}}))
     
     if output ~= nil then
         print("Remote Output: " .. output)

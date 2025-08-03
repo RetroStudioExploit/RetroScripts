@@ -17,11 +17,11 @@ end
 
 function buildBlock(tools:RemoteEvent, pos)
 	if modes == 1 then
-        tools:FireServer(unpack({[1] = {[1] = pos, [2] = true}}))
+        tools:FireServer(unpack({{pos, true}}))
     elseif modes == 2 then
-        tools:FireServer(unpack({[1] = {[1] = pos}}))
+        tools:FireServer(unpack({{pos}}))
     else
-        tools:FireServer(unpack({[1] = {[1] = CFrame.new(pos, Vector3.zero)}}))
+        tools:FireServer(unpack({{CFrame.new(pos, Vector3.zero)}}))
     end
 end
 
