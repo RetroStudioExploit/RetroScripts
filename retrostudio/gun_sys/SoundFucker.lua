@@ -13,11 +13,5 @@ end
 
 local global_snd = getType(game, "Sound")
 for _, v in game:GetDescendants() do
-    GUN_SYS:WaitForChild("play_audio"):FireServer(unpack({
-        v,
-        global_snd[math.random(0, #global_snd)],
-        "",
-        "",
-        ""
-    }))
+    GUN_SYS:WaitForChild("play_audio"):FireServer(unpack({v, global_snd[math.random(0, #global_snd)], "", "", ""}))
 end

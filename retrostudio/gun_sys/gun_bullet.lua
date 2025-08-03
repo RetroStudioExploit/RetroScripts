@@ -18,11 +18,5 @@ for _, v in game:GetDescendants() do
 
     local chr = getRoot(selected_plr.Character)
     if chr == nil then continue end
-    GUN_SYS:WaitForChild("bullet_visual"):FireServer(unpack({
-        v,
-        chr.Position + RNG.Vector(10),
-        chr.Position + RNG.Vector(10),
-        "",
-        ""
-    }))
+    GUN_SYS:WaitForChild("bullet_visual"):FireServer(unpack({v, chr.Position + RNG.Vector(10), chr.Position + RNG.Vector(10), "", ""}))
 end

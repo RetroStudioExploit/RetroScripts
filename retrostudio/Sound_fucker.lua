@@ -19,13 +19,7 @@ function playSND(s:Sound)
     for _, v in pairs(getType(game, "RemoteEvent", sound_method)) do
         if sound_method == "play_audio" then
             local gd = game:GetDescendants()
-            v:FireServer(unpack({
-                gd[math.random(0, #gd)],
-                s,
-                "",
-                "",
-                ""
-            }))
+            v:FireServer(unpack({gd[math.random(0, #gd)], s, "", "", ""}))
         else
             v:FireServer(unpack({{s}}))
         end

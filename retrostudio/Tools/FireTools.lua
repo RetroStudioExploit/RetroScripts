@@ -39,7 +39,7 @@ function getRootSafe(noroot:boolean)
     return root
 end
 function inlinedRemote(e, args:table)
-    local output
+    local output = nil
     if remoteFunc then
         output = e:InvokeServer(unpack(args))
     else
@@ -58,10 +58,10 @@ for _, v in game:GetDescendants() do
     end
 end
 
-function parseArgs()
+function parseArgs():table
     local root = getRootSafe(false)
     local root2 = getRootSafe(true)
-    if root == nil or root2 == nil then return end
+    if root == nil or root2 == nil then return nil end
 
     local tbl
 
