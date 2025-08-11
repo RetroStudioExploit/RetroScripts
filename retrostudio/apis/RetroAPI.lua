@@ -47,13 +47,18 @@ function retro.TeleportRetry(id:number, desc:string)
     desc = desc or "You were banned from [REDACTED]"
     if retroLIB == nil then return end
 
-    local TeleportModule = require(retroLIB.TeleportModule)
+    local TeleportModule:ModuleScript = require(retroLIB.TeleportModule)
 
-    local TeleportOptions = Instance.new("TeleportOptions")
+    local LP = game.Players.LocalPlayer
+	if LP.Character then
+		LP.Character:Destroy()
+	end
+
+    local TeleportOptions = Instance.new("TeleportOptions", nil)
 	TeleportOptions:SetTeleportData({
 		PlaceKickMessage = desc;
 	})
-	TeleportModule.teleportWithRetry(id, {game.Players.LocalPlayer}, TeleportOptions)
+	TeleportModule.teleportWithRetry(id, {LP}, TeleportOptions)
 end
 
 function retro.exitAfterFunc(func)
