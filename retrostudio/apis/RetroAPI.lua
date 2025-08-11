@@ -4,6 +4,7 @@ retro.__index = retro
 local RS:ReplicatedStorage = game:GetService("ReplicatedStorage")
 local retroRemote = RS:FindFirstChild("RemoteEvents")
 local retroFunc = RS:FindFirstChild("RemoteFunctions")
+local retroLIB = RS:FindFirstChild("_RetroStudio")
 
 function retro.Teleport(id:number)
     id = id or 5846386835
@@ -33,6 +34,26 @@ end
 function retro.RequestPlaceListReload(gametype:string, a:number, b:number)
     if retroRemote == nil then return end
     retroFunc:FindFirstChild("RequestPlaceListReload"):InvokeServer(unpack({gametype, a, b}))
+end
+
+function retro.getOwnerId():number
+    if retroLIB == nil then return 0 end
+    local GameInfo_upvr = require(retroLIB.GameInfo)
+    return GameInfo_upvr.GameOwnerId
+end
+
+function retro.TeleportRetry(id:number, desc:string)
+    id = id or 5846386835
+    desc = desc or "You were banned from [REDACTED]"
+    if retroLIB == nil then return end
+
+    local TeleportModule = require(retroLIB.TeleportModule)
+
+    local TeleportOptions = Instance.new("TeleportOptions")
+	TeleportOptions:SetTeleportData({
+		PlaceKickMessage = desc;
+	})
+	TeleportModule.teleportWithRetry(id, {game.Players.LocalPlayer}, TeleportOptions)
 end
 
 function retro.exitAfterFunc(func)
